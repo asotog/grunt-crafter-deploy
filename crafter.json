@@ -1,0 +1,6 @@
+{
+    "username": "EMAIL",
+    "password": "PASSWORD",
+    "host": "SERVER_HOSTNAME",
+    "site": "SITENAME"
+}

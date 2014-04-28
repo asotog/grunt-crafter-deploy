@@ -1,0 +1,1 @@
+console.info('im a crafter deployment grunt task test, deploys to cloud instance');
