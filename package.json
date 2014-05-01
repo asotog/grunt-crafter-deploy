@@ -1,7 +1,7 @@
 {
   "name": "grunt-crafter-deploy",
   "description": "Crafter Studio deployer for assets such as images, js or css",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/asotog/grunt-crafter-deploy",
   "author": {
     "name": "asotog",

@@ -23,6 +23,9 @@ module.exports = function (grunt) {
 
         var alfrescoTicket = '';
 
+        var filesNumber = 0; /* number of files to be uploaded */
+        var filesUploaded = 0 /* files uploaded */
+        
         var baseUrl = '';
         // Merge task-specific and/or target-specific options with these defaults.
         var taskOptions = this.options({
@@ -70,24 +73,35 @@ module.exports = function (grunt) {
                 path: taskOptions.uploadFilePath + '?alf_ticket=' + alfrescoTicket,
                 auth: taskOptions.username + ':' + taskOptions.password 
             }, function (err, res) {
+                filesUploaded += 1;
+                grunt.log.writeln('File deployed -> ' + source);
                 res.resume();
-                done();
+                /* if all files were uploaded */
+                if (filesUploaded == filesNumber) {
+                    done();
+                }
             });
 
         };
 
         /* Reads files that are going to be deployed */
         var processFiles = function () {
+            filesNumber = 0;
+            filesUploaded = 0;
+            
             self.files.forEach(function (f) {
                 var dest = f.dest;
                 var src = f.src.filter(function (filepath) {
                     if (!grunt.file.exists(filepath)) {
-                        grunt.log.writeln('Source file "' + filepath + '" not found.');
+                        //grunt.log.writeln('Source file "' + filepath + '" not found.');
                         return false;
                     } else {
                         return true;
                     }
                 });
+                
+                filesNumber += src.length;
+                
                 for (var i = 0; i < src.length; i++) {
                     grunt.log.writeln('Uploading: "' + src[i] + '" to "' + baseUrl + dest + '"');
                     uploadFile(src[i], dest);
