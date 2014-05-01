@@ -93,7 +93,7 @@ module.exports = function (grunt) {
                 var dest = f.dest;
                 var src = f.src.filter(function (filepath) {
                     if (!grunt.file.exists(filepath)) {
-                        //grunt.log.writeln('Source file "' + filepath + '" not found.');
+                        grunt.log.writeln('Source file "' + filepath + '" not found.');
                         return false;
                     } else {
                         return true;
@@ -103,7 +103,7 @@ module.exports = function (grunt) {
                 filesNumber += src.length;
                 
                 for (var i = 0; i < src.length; i++) {
-                    grunt.log.writeln('Uploading: "' + src[i] + '" to "' + baseUrl + dest + '"');
+                    //grunt.log.writeln('Uploading: "' + src[i] + '" to "' + baseUrl + dest + '"');
                     uploadFile(src[i], dest);
                 }
             });
